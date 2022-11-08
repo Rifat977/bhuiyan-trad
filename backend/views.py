@@ -9,7 +9,15 @@ from .forms import *
 # Create your views here.
 @login_required
 def Dashboard(request):
-    return render(request, 'admin/dashboard.html')
+    category = Category.objects.all().count()
+    subcategory = Subcategory.objects.all().count()
+    product = Product.objects.all().count()
+    context = {
+        'category' : category,
+        'subcategory': subcategory,
+        'product' : product
+    }
+    return render(request, 'admin/dashboard.html', context)
 
 @unauthenticated_user
 def Login(request):
@@ -85,6 +93,9 @@ def EditCategory(request, pk):
 @login_required
 def DeleteCategory(request, pk):
     cat = Category.objects.get(id=pk)
+    old_img = cat.image.path
+    if(os.path.exists(old_img)):
+        os.remove(old_img)
     cat.delete()
     return redirect('backend:categories')
 
@@ -148,6 +159,9 @@ def EditSubcategory(request, pk):
 @login_required
 def DeleteSubcategory(request, pk):
     subcat = Subcategory.objects.get(id=pk)
+    old_img = subcat.image.path
+    if(os.path.exists(old_img)):
+        os.remove(old_img)
     subcat.delete()
     return redirect('backend:categories')
 
@@ -163,7 +177,6 @@ def AddProduct(request):
         else:
             for validation_error in form.errors.as_data():
                 error.append(validation_error + " field is required")
-            print(form.errors.as_data())
     category = Category.objects.all()
     subcategory = Subcategory.objects.all()
     context = {
@@ -182,11 +195,46 @@ def ProductsView(request):
     return render(request, 'admin/products.html', context)
 
 @login_required
+def EditProduct(request, pk):
+    entry = Product.objects.get(id=pk)
+    old_img = entry.featureimage.path
+    error = []
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES, instance=entry)
+        if form.is_valid():
+            if request.FILES:
+                if(os.path.exists(old_img)):
+                    os.remove(old_img)
+            form.save()
+            messages.success(request, "Product update successfully!")
+            return redirect('backend:products')
+        else:
+            for validation_error in form.errors.as_data():
+                error.append(validation_error + " field is required")
+    product = Product.objects.get(id=pk)
+    subcategory = Subcategory.objects.all()
+    context = {
+        'product' : product,
+        'subcategory': subcategory,
+        'errors' : error
+    }
+    return render(request, 'admin/edit/product.html', context)
+
+@login_required
 def CategoryView(request):
     categories = Category.objects.all().order_by('-id')
     subcategoires = Subcategory.objects.all().order_by('-id')
     context = {'categories':categories, 'subcategoires': subcategoires}
     return render(request, 'admin/categories.html', context)
+
+@login_required
+def DeleteProduct(request, pk):
+    entry = Product.objects.get(id=pk)
+    old_img = entry.featureimage.path
+    if(os.path.exists(old_img)):
+        os.remove(old_img)
+    entry.delete()
+    return redirect('backend:products')
 
 @login_required
 @is_admin

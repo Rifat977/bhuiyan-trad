@@ -52,12 +52,12 @@
                                         <td>{{item.productdesc|truncatechars:18}}</td>
                                         <td>{{item.subcategory.name}}</td>
                                         <td>
-                                            <img src="{{item.featureimage.url}}" style="height: 110px;" alt="">
+                                            <img src="{{item.featureimage.url}}" style="height: 70px;" alt="">
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-success m-1"> <i class=" ri-eye-line"></i> </a>
-                                            <a href="" class="btn btn-sm btn-warning m-1"> <i class="bx bx-edit"></i> </a>
-                                            <a href="" onclick="confirm('Are you sure?')" class="btn m-1 btn-sm btn-danger"> <i class="bx bxs-trash-alt"></i></a>
+                                            <!-- <a href="" class="btn btn-sm btn-success m-1"> <i class=" ri-eye-line"></i> </a> -->
+                                            <a href="{% url 'backend:edit-product' item.id %}" class="btn btn-sm btn-warning m-1"> <i class="bx bx-edit"></i> </a>
+                                            <a href="{% url 'backend:delete-product' item.id %}" onclick="confirm('Are you sure?')" class="btn m-1 btn-sm btn-danger"> <i class="bx bxs-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                     {% endfor %}

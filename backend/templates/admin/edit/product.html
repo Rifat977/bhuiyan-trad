@@ -1,0 +1,93 @@
+{% extends '../../asset/base.html' %} {% load static %} {% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Edit Product</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Product</a></li>
+                <li class="breadcrumb-item"><a href="#">Edit Product</a></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            {% for error in errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% for message in messages %}
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Product</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:edit-product' product.id %}">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Product Name</label>
+                                <input type="text" name="name" class="form-control" value="{{product.name}}" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Price</label>
+                                <input type="number" name="price" class="form-control" value="{{product.price}}" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Currency</label>
+                                <input type="text" name="currency" class="form-control" value="{{product.currency}}" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Stock</label>
+                                <input type="number" name="stock" class="form-control" value="{{product.stock}}" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Short Description</label>
+                                <textarea name="shortdesc" name="shortdesc" class="form-control" id="" cols="30" rows="5">{{product.shortdesc}}</textarea>
+                            </div>
+                            <div class="col-12 ">
+                                <label for="inputNanme4 " class="form-label ">Product Description</label>
+                                <textarea name="productdesc " name="prodcutdesc " class="form-control " id=" " cols="30 " rows="7">{{product.productdesc}}</textarea>
+                            </div>
+                            <div class="col-12 ">
+                                <label for="inputNanme4 " class="form-label ">Subcategory</label>
+                                <select class="form-control " name="subcategory "> 
+                                    <option>Select Subategory</option>
+                                    {% for item in subcategory %}
+                                    <option {%if item.id == product.subcategory.id %} selected {%endif%} value="{{item.id}} ">{{item.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <img src="{{product.featureimage.url}} " style="height: 130px; " class="img-fluid m-3 " /><br>
+                                <label for="inputEmail4" class="form-label">Feature Image</label>
+                                <input type="file" name="featureimage" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Gallery Images</label>
+                                <input type="file" name="galleryimage" class="form-control" multiple id="inputEmail4">
+                            </div>
+                            <div class="text-left mt-4 ">
+                                <button type="submit " class="btn btn-success m-1 ">Update</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

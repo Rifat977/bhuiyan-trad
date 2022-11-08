@@ -17,18 +17,6 @@
                 <i class="bi bi-menu-button-wide"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                {% url 'backend:products' as url %}
-                <li class="">
-                    <a href=" {% url 'backend:products' %} ">
-                        <i class="bi bi-circle "></i><span class="{% if request.path == url %}text-primary{% endif %} ">Products</span>
-                    </a>
-                </li>
-                {% url 'backend:categories' as url %}
-                <li class="">
-                    <a href=" {% url 'backend:categories' %} ">
-                        <i class="bi bi-circle "></i><span class="{% if request.path == url %}text-primary{% endif %} ">Categories</span>
-                    </a>
-                </li>
                 {% url 'backend:add-category' as url %}
                 <li class="">
                     <a href=" {% url 'backend:add-category' %} ">
@@ -39,6 +27,18 @@
                 <li class="">
                     <a href=" {% url 'backend:add-product' %} ">
                         <i class="bi bi-circle "></i><span class="{% if request.path == url %}text-primary{% endif %} ">Add Product</span>
+                    </a>
+                </li>
+                {% url 'backend:categories' as url %}
+                <li class="">
+                    <a href=" {% url 'backend:categories' %} ">
+                        <i class="bi bi-circle "></i><span class="{% if request.path == url %}text-primary{% endif %} ">Categories</span>
+                    </a>
+                </li>
+                {% url 'backend:products' as url %}
+                <li class="">
+                    <a href=" {% url 'backend:products' %} ">
+                        <i class="bi bi-circle "></i><span class="{% if request.path == url %}text-primary{% endif %} ">Products</span>
                     </a>
                 </li>
             </ul>
