@@ -31,31 +31,48 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Price</th>
+                                        <th>Currency</th>
+                                        <th>Stock</th>
+                                        <th>Short Desc</th>
+                                        <th>Product Desc</th>
+                                        <th>Subcategory</th>
+                                        <th>Feature Image</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for item in product %}
                                     <tr>
-                                        <td>Donna Snider</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td>2011/01/25</td>
-                                        <td>$112,000</td>
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.price}}</td>
+                                        <td>{{item.currency}}</td>
+                                        <td>{{item.stock}}</td>
+                                        <td>{{item.shortdesc|truncatechars:18}}</td>
+                                        <td>{{item.productdesc|truncatechars:18}}</td>
+                                        <td>{{item.subcategory.name}}</td>
+                                        <td>
+                                            <img src="{{item.featureimage.url}}" style="height: 110px;" alt="">
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn-sm btn-success m-1"> <i class=" ri-eye-line"></i> </a>
+                                            <a href="" class="btn btn-sm btn-warning m-1"> <i class="bx bx-edit"></i> </a>
+                                            <a href="" onclick="confirm('Are you sure?')" class="btn m-1 btn-sm btn-danger"> <i class="bx bxs-trash-alt"></i></a>
+                                        </td>
                                     </tr>
+                                    {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Price</th>
+                                        <th>Currency</th>
+                                        <th>Stock</th>
+                                        <th>Short Desc</th>
+                                        <th>Product Desc</th>
+                                        <th>Subcategory</th>
+                                        <th>Feature Image</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>

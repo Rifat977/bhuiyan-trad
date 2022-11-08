@@ -20,6 +20,11 @@ def user_path(instance, filename):
     filename = "%s.%s" % (rand, ext)
     return os.path.join('user', filename)
 
+def product_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (rand, ext)
+    return os.path.join('product', filename)
+
 class User(AbstractUser):
     @property
     def is_admin(self):
@@ -51,6 +56,22 @@ class Subcategory(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     image = models.ImageField(upload_to=category_path, null=False, blank=False, default="default.jpg")
+
+    @property
+    def slug(self):
+        name = self.name
+        return name.replace(' ', '-').lower()
+
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.FloatField(blank=True, default=0)
+    currency = models.CharField(max_length=25, blank=True, default="BDT")
+    stock = models.IntegerField(blank=True, default=0)
+    shortdesc = models.TextField(null=True, blank=True)
+    productdesc = models.TextField(null=True, blank=True)
+    subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
+    featureimage = models.ImageField(upload_to=product_path, null=False, blank=False)
+    galleryimage = models.ImageField(upload_to=product_path, null=False, blank=False, default="default.jpg")
 
     @property
     def slug(self):

@@ -153,11 +153,33 @@ def DeleteSubcategory(request, pk):
 
 @login_required
 def AddProduct(request):
-    return render(request, 'admin/add_product.html')
+    error = []
+    if request.method == "POST":
+        name = request.POST['name']
+        # galleryImage = request.FILES.getlist('galleryimage')
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+        else:
+            for validation_error in form.errors.as_data():
+                error.append(validation_error + " field is required")
+            print(form.errors.as_data())
+    category = Category.objects.all()
+    subcategory = Subcategory.objects.all()
+    context = {
+        'category': category,
+        'subcategory': subcategory,
+        'errors' : error
+    }
+    return render(request, 'admin/add_product.html', context)
 
 @login_required
 def ProductsView(request):
-    return render(request, 'admin/products.html')
+    product = Product.objects.all().order_by('-id')
+    context = {
+        'product' : product
+    }
+    return render(request, 'admin/products.html', context)
 
 @login_required
 def CategoryView(request):
@@ -169,4 +191,17 @@ def CategoryView(request):
 @login_required
 @is_admin
 def Profile(request):
+    user = Admin.objects.get(user=request.user)
+    old_img = user.image.path
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            if request.FILES:
+                    if(os.path.exists(old_img)):
+                        os.remove(old_img)
+            form.save();
+            messages.success(request, "Profile updated successfully!")
+            return redirect('backend:profile')
+        else:
+            print(form.errors.as_data())
     return render(request, 'profile.html')

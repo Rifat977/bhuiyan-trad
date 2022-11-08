@@ -14,8 +14,12 @@
 
     <section class="section dashboard">
         <div class="row">
-
-            {% if messages %} {% for message in messages %}
+            {% for error in errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% if messages %} {% for message in messages %}
             <div class="alert alert-{{message.tags}} bg-{{message.tags}} text-light border-0 alert-dismissible fade show" role="alert">
                 {{message}}
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -29,50 +33,57 @@
                         <h5 class="card-title">Create Product</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3">
+                        <form class="row g-3" enctype="multipart/form-data" method="POST" action="{% url 'backend:add-product' %}">
+                            {% csrf_token %}
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" placeholder="Ex. (Cobham SAILOR 90 Satellite TV)" id="inputNanme4">
+                                <input type="text" name="name" class="form-control" placeholder="Ex. (Cobham SAILOR 90 Satellite TV)" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Product Price</label>
-                                <input type="number" class="form-control" placeholder="Ex. (150)" id="inputNanme4">
+                                <input type="number" name="price" class="form-control" placeholder="Ex. (150)" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Currency</label>
-                                <input type="text" class="form-control" placeholder="Ex. (USD)" id="inputNanme4">
+                                <input type="text" name="currency" class="form-control" placeholder="Ex. (USD)" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">In Stock</label>
-                                <input type="number" class="form-control" placeholder="Ex. (5)" id="inputNanme4">
+                                <input type="number" name="stock" class="form-control" placeholder="Ex. (5)" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Short Description</label>
-                                <textarea name="shortdesc" class="form-control" id="" cols="30" rows="5" placeholder="Short Description about product"></textarea>
+                                <textarea name="shortdesc" name="shortdesc" class="form-control" id="" cols="30" rows="5" placeholder="Short Description about product"></textarea>
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Product Description</label>
-                                <textarea name="productdesc" class="form-control" id="" cols="30" rows="7" placeholder="Product product"></textarea>
+                                <textarea name="productdesc" name="prodcutdesc" class="form-control" id="" cols="30" rows="7" placeholder="Product product"></textarea>
                             </div>
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Category</label>
                                 <select class="form-control" name="category_name"> 
-                                    <option>Select Category</option>
+                                    <option value="">Select Category</option>
+                                    {% for item in category %}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {% endfor %}
                                 </select>
-                            </div>
+                            </div> -->
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Subcategory</label>
-                                <select class="form-control" name="category_name"> 
+                                <select class="form-control" name="subcategory"> 
                                     <option>Select Subategory</option>
+                                    {% for item in subcategory %}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-12">
                                 <label for="inputEmail4" class="form-label">Feature Image</label>
-                                <input type="file" class="form-control" id="inputEmail4">
+                                <input type="file" name="featureimage" class="form-control" id="inputEmail4">
                             </div>
                             <div class="col-12">
                                 <label for="inputEmail4" class="form-label">Gallery Images</label>
-                                <input type="file" class="form-control" multiple id="inputEmail4">
+                                <input type="file" name="galleryimage" class="form-control" multiple id="inputEmail4">
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-primary m-1">Create</button>

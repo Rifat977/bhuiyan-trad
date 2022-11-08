@@ -17,7 +17,15 @@ class SubcategoryAdmin(admin.ModelAdmin):
     def Category(self, obj):
         return obj.category.name
 
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'stock', 'Subcategory')
+    search_fields = ('name')
+
+    def Subcategory(self, obj):
+        return obj.subcategory.name
+
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subcategory, SubcategoryAdmin)
+admin.site.register(Product, CategoryAdmin)
 admin.site.register(User,)
 admin.site.register(Admin, AdminAdmin)
