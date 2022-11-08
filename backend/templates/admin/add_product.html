@@ -1,0 +1,94 @@
+{% extends '../asset/base.html' %} {% load static %} {% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Add Product</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Product</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'backend:add-product' %}">Add Product</a></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-{{message.tags}} bg-{{message.tags}} text-light border-0 alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %}
+
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Product</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" placeholder="Ex. (Cobham SAILOR 90 Satellite TV)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Product Price</label>
+                                <input type="number" class="form-control" placeholder="Ex. (150)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Currency</label>
+                                <input type="text" class="form-control" placeholder="Ex. (USD)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">In Stock</label>
+                                <input type="number" class="form-control" placeholder="Ex. (5)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Short Description</label>
+                                <textarea name="shortdesc" class="form-control" id="" cols="30" rows="5" placeholder="Short Description about product"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Product Description</label>
+                                <textarea name="productdesc" class="form-control" id="" cols="30" rows="7" placeholder="Product product"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Category</label>
+                                <select class="form-control" name="category_name"> 
+                                    <option>Select Category</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Subcategory</label>
+                                <select class="form-control" name="category_name"> 
+                                    <option>Select Subategory</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Feature Image</label>
+                                <input type="file" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Gallery Images</label>
+                                <input type="file" class="form-control" multiple id="inputEmail4">
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary m-1">Create</button>
+                                <button type="reset" class="btn btn-secondary m-1">Reset</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

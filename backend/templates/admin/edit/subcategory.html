@@ -1,0 +1,69 @@
+{% extends '../../asset/base.html' %} {% load static %} {% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Edit Subcategory</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Product</a></li>
+                <li class="breadcrumb-item"><a href="#">Edit Subcategory</a></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            {% for error in errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% for message in messages %}
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Subcategory</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:edit-subcategory' subcategory.id %}">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Subcategory Name</label>
+                                <input type="text" name="name" class="form-control" value="{{subcategory.name}}" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Category</label>
+                                <select name="category" required class="form-control">
+                                    {% for item in category %}
+                                        <option {% if subcategory.category.id == item.id %}selected{% endif %} value="{{item.id}}">{{item.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                {% if subcategory.image.url != "" %}
+                                <img src="{{subcategory.image.url}}" style="height: 130px;" class="img-fluid m-3" /><br> {% endif %}
+                                <label for="inputEmail4" class="form-label">Image</label>
+                                <input type="file" name="image" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="text-left mt-4">
+                                <button type="submit" class="btn btn-success m-1">Update</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

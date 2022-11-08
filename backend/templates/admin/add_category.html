@@ -1,0 +1,98 @@
+{% extends '../asset/base.html' %} {% load static %} {% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Add Category</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Product</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'backend:dashboard' %}">Add Category</a></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            {% for error in errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% for message in messages %}
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Category</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:add-category' %}">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Category Name</label>
+                                <input type="text" name="name" required class="form-control" placeholder="Ex. (Marine)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Image</label>
+                                <input type="file" name="image" required class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary m-1">Create</button>
+                                <button type="reset" class="btn btn-secondary m-1">Reset</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Subcategory</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:add-subcategory' %}">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Category Name</label>
+                                <select class="form-control" required name="category"> 
+                                    <option value="">Select Category</option>
+                                    {% for item in categories %}
+                                    <option value="{{item.id}}">{{item.name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Subcategory Name</label>
+                                <input type="text" required name="name" class="form-control" placeholder="Ex. (Automation)" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Image</label>
+                                <input type="file" required name="image" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-primary m-1">Create</button>
+                                <button type="reset" class="btn btn-secondary m-1">Reset</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

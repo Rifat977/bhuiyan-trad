@@ -9,8 +9,7 @@ djangorestframework==3.11.2
 djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 Pillow==9.0.1
-psycopg2==2.9.5
-uritemplate==4.1.1
-whitenoise==6.2.0
-wrapt==1.11.1
-wsproto==1.1.0
+psycopg2
+uritemplate
+whitenoise
+wsproto
