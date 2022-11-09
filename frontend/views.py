@@ -12,10 +12,9 @@ def Home(request):
     }
     return render(request, 'home.html', context)
 
-def Subcategory(request):
+def Subcategory(request, cat_id):
     settings = Settings.objects.first()
-    category = Category.objects.all().order_by('-id')
-    product = Product.objects.all()[:4]
+    subcategory = Subcategory.objects.filter()
     context = {
         'settings' : settings,
         'category' : category,
