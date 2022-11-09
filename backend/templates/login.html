@@ -61,7 +61,7 @@
                                     </div>
                                     {% endfor %} {% endif %}
 
-                                    <form class="row g-3 needs-validation" method="POST" action="{% url 'backend:login' %}" novalidate>
+                                    <form class="row g-3 needs-validation" method="POST" action="{% url 'backend:login' %}">
                                         {% csrf_token %}
                                         <div class="col-12">
                                             <label for="yourUsername" class="form-label">Username</label>
