@@ -1,0 +1,44 @@
+{% extends 'asset2/base.html' %} {% load static %} {% block content %}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{% url 'frontend:home' %}">Home</a></li>
+                <li>Subcategory</li>
+                <li>Product</li>
+            </ol>
+            <h2>Product of {{single_subcategory.name}}</h2>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <section class="inner-page bg-light">
+        <div class="container">
+            <div class="row all_products">
+                {% for item in product %}
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="product_description">
+                        <div class="img">
+                            <img src="{{item.featureimage.url}}" width="250px" style="height: 150px;" class="img-fluid" alt="pr1">
+                        </div>
+                        <div class="product_title">
+                            <h3 style="font-size: 20px; font-family: sans-serif; font-weight: 550; padding: 20px 5px; margin-bottom: 10px; " class="mb-5">
+                                <!-- Cobham sailor 90 satellite TV world system at sea -->
+                                {{item.name}}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
+
+</main>
+{% endblock %}

@@ -1,7 +1,42 @@
 {% extends 'asset2/base.html' %} {% load static %} {% block content %}
 <main id="main">
 
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
 
+            <ol>
+                <li><a href="{% url 'frontend:home' %}">Home</a></li>
+                <li>Subcategory</li>
+            </ol>
+            <h2>Subcategory of {{single_category.name}}</h2>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <section class="inner-page bg-light">
+        <div class="container">
+            <div class="row our_main_category">
+                {% for item in subcategory %}
+                <div class=" col-6 col-md-4 mb-5">
+                    <a href="{% url 'frontend:subcategory-product' item.id %}">
+                        <div class="product_category_inner d-flex  align-items-center gap-2px">
+                            <div class="img">
+                                <img class="rounded-circle" src="{{item.image.url}}" width="70px" height="70px" alt="category image">
+                            </div>
+                            <div class="text">
+                                <h4 class="ms-4 text-black">{{item.name}}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+    </section>
 
 </main>
 {% endblock %}
