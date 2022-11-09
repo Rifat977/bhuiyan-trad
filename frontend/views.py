@@ -15,7 +15,7 @@ def Home(request):
 def Subcategory(request):
     settings = Settings.objects.first()
     category = Category.objects.all().order_by('-id')
-    product = Product.objects.all()
+    product = Product.objects.all()[:4]
     context = {
         'settings' : settings,
         'category' : category,
