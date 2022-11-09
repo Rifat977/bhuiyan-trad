@@ -31,31 +31,35 @@
                         <h5 class="card-title">Update Settings</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:add-category' %}">
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:site-settings' %}">
                             {% csrf_token %}
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Site Title</label>
-                                <input type="text" name="name" required class="form-control" value="WelcomeBhuiyan Trading Corporation" id="inputNanme4">
+                                <input type="text" name="title" required class="form-control" value="{{settings.title}}" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Phone</label>
-                                <input type="number" name="name" required class="form-control" value="" id="inputNanme4">
+                                <input type="number" name="phone" required class="form-control" value="{{settings.phone}}" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Email</label>
-                                <input type="email" name="name" required class="form-control" value="" id="inputNanme4">
+                                <input type="email" name="email" required class="form-control" value="{{settings.email}}" id="inputNanme4">
                             </div>
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Address</label>
-                                <textarea name="productdesc" name="prodcutdesc" class="form-control" rows="4" placeholder="Product product"></textarea>
+                                <textarea name="address" class="form-control" rows="4" placeholder="Product product">{{settings.address}}</textarea>
                             </div>
                             <div class="col-12">
+                                {% if settings.site_logo.url != "" %}
+                                <img src="{{settings.site_logo.url}}" style="height: 130px;" class="img-fluid m-3" /><br> {% endif %}
                                 <label for="inputEmail4" class="form-label">Site Logo</label>
-                                <input type="file" name="image" required class="form-control" id="inputEmail4">
+                                <input type="file" name="site_logo" class="form-control" id="inputEmail4">
                             </div>
                             <div class="col-12">
+                                {% if settings.her_image.url != "" %}
+                                <img src="{{settings.hero_image.url}}" style="height: 130px;" class="img-fluid m-3" /><br> {% endif %}
                                 <label for="inputEmail4" class="form-label">Hero Image</label>
-                                <input type="file" name="image" required class="form-control" id="inputEmail4">
+                                <input type="file" name="hero_image" class="form-control" id="inputEmail4">
                             </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-success m-1">Update</button>

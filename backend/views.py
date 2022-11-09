@@ -28,11 +28,16 @@ def Login(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_admin:
+                messages.error(request, "is admin")
                 login(request, user)
                 messages.success(request, "Welcome, "+request.user.admin.name+"! You are Logged in!")
                 return redirect('backend:dashboard')
-            elif user.is_superuser:
-                messages.error(request, 'Username or password is incorrect')
+            elif user.is_superuser and user.is_admin:
+                messages.error(request, "is admin")
+                messages.success(request, "Welcome, "+request.user.admin.name+"! You are Logged in!")
+                return redirect('backend:dashboard')
+            else:
+                messages.error(request, "Username or password is incorrect")
         else:
             messages.error(request, 'Username or password is incorrect')
     return render(request, 'login.html')
@@ -208,7 +213,7 @@ def EditProduct(request, pk):
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=entry)
         if form.is_valid():
-            if request.FILES:
+            if 'featureimage' in request.FILES:
                 if(os.path.exists(old_img)):
                     os.remove(old_img)
             form.save()
@@ -249,10 +254,13 @@ def DeleteProduct(request, pk):
     return redirect('backend:products')
 
 @login_required
-@is_admin
+# @is_admin
 def Profile(request):
     user = Admin.objects.get(user=request.user)
-    old_img = user.image.path
+    try:
+        old_img = user.image.path
+    except Exception as e:
+        old_img = ""
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
@@ -271,8 +279,29 @@ def CustomerView(request):
     return render(request, 'admin/customers.html')
 
 @login_required
-def SiteSetting(request):
-    return render(request, 'admin/site_setting.html')
+def SiteSettings(request):
+    if request.method == "POST":
+        entry = Settings.objects.first()
+        try:
+            old_site_logo = entry.site_logo.path
+        except Exception as e:
+            old_hero_image = ""
+        try:
+            old_hero_image = entry.old_hero_image.path
+        except Exception as e:
+            old_hero_image = ""
+        form = SettingsForm(request.POST, request.FILES, instance=entry)
+        if form.is_valid():
+            form.save()
+            if(os.path.exists(old_site_logo) and 'site_logo' in request.FILES):
+                os.remove(old_site_logo)
+            if(os.path.exists(old_hero_image) and 'hero_image' in request.FILES):
+                os.remove(old_hero_image)
+            messages.success(request, 'Settings successfully updated!')
+        else:
+            print(form.errors.as_data())
+    settings = Settings.objects.first()
+    return render(request, 'admin/site_setting.html', {'settings':settings})
 
 @login_required
 def ChangePassword(request):

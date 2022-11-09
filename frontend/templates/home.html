@@ -1,1 +1,204 @@
-<h1>Hello</h1>
+{% extends 'asset2/base.html' %} {% load static %} {% block content %}
+<section id="hero" class="d-flex align-items-center" style="
+    background: rgba(0,0,0, 0.5) url({{ settings.hero_image.url }}); background-position: center;
+    background-size: cover;
+    background-position: center; 
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    ">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                <h1>{{settings.title}}</h1>
+                <div class="d-flex justify-content-center justify-content-lg-start">
+                    <a href="#about" class="btn-get-started scrollto">Our Products</a>
+                </div>
+            </div>
+            <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+                </div> -->
+        </div>
+    </div>
+
+</section>
+
+<main id="main">
+
+    <!-- ======= Services Section ======= -->
+    <section id="category" class="services section-bg Our_products">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Our Categories</h2>
+            </div>
+            <div class="row">
+
+                {% for item in category %}
+                <div class="col col-6 col-md-3">
+                    <a href="#">
+                        <div class="product_category_inner d-flex  align-items-center gap-2px">
+                            <div class="img">
+                                <img class="rounded-circle" src="{{ item.image.url }}" width="70px" height="70px" alt="category image">
+                            </div>
+                            <div class="text">
+                                <h4 class="ms-4 text-black">{{item.name}}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </section>
+    <!-- End Services Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="category" class="services section-bg who_we">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title ">
+                <h2 class="text-white">Who we are?</h2>
+            </div>
+
+            <div class="row d-flex">
+                <div class="col col-12 col-md-6 order-2 order-md-1">
+                    <div class="description text-white">
+                        <h3 class="font-weight-bold">Who we are?</h3>
+                        <p style="font-size: 20px;">
+                            {{settings.who_we}}
+                        </p>
+                    </div>
+                </div>
+                <div class="col col-12 col-md-6 order-1 order-md-2">
+                    <div class="img mb-5 mb-md-0">
+                        <img class="rounded" src="{{settings.who_we_image.url}}" alt="img-fluid">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Services Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="category" class="services section-bg">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Future Focused</h2>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col col-12 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="img mb-5 mb-md-0">
+                            <img src="{{settings.future_forused_img.url}}" class="img-fluid" alt="future">
+                        </div>
+                    </div>
+
+                    <div class="col col-12 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="dercription">
+                            <h3>
+                                {{settings.future_focused}}
+                            </h3>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+    </section>
+    <!-- End Services Section -->
+
+    <!-- ======= Category Us Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+                <h2>Something About Us</h2>
+            </div>
+
+            <div class="row content">
+                <div class="col-lg-6">
+                    <div class="img mb-5 mb-md-0">
+                        <img src="{{settings.about_us_img.url}}" class="img-fluid" alt="shipequipment">
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0">
+                    <h3>Our Research</h3>
+                    <p style="font-size: 20px;">
+                        {{settings.about_us}}
+                    </p>
+                    <a href="#" class="btn-learn-more">Learn More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End About Us Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clientzs section-bg blog_section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="text-white">Our Blog</h2>
+            </div>
+            <div class="row" data-aos="zoom-in">
+                <div class="col col-12 col-md-6">
+                    <a href="#">
+                        <div class="blog-image">
+                            <img src="{% static 'frontend/assets/img/main.png'%}" style="position: relative; text-align: center;" class="rounded " width="100%" alt="blog-image">
+                            <p style="font-size: 20px; font-weight:700; font-family:sans-serif; color:white; position:absolute; bottom: 10px;  margin-left: 20px;" class="">Vite 3.0 vs. Create React App : <br> Comparison and migration guide
+                            </p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col col-12 col-md-6">
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Cliens Section -->
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+        <div class="container" data-aos="zoom-in">
+            <div class="section-title">
+                <h2>Popular Products</h2>
+            </div>
+            <div class="row">
+                {% for item in product %}
+                <div class="col col-12 col-md-4">
+                    <div class="product_image ">
+                        <img src="{{item.featureimage.url}}" height="50%" alt="equepments">
+                        <p class="text-black text-center" style="font-size: 25px; font-weight:600; font-family:sans-serif;">
+                            {{item.name}}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+    <!-- End Cta Section -->
+
+
+    <!-- End Contact Section -->
+
+</main>
+{% endblock %}

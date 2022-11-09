@@ -1,0 +1,60 @@
+<footer id="footer">
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <a href="#" class="mb-2">
+                        <img src="{{settings.site_logo.url}}" class="mb-3 img-fluid" width="120px" alt="logo">
+                    </a>
+                    <p>
+                        {{settings.address}}
+                        <strong>Phone:</strong> {{settings.phone}}<br>
+                        <strong>Email:</strong> {{settings.email}}<br>
+                    </p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Latest News</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Categories</h4>
+                    <ul>
+                        {% for item in category %}
+                        <span></span>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">{{item.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Social Networks</h4>
+                    <p>you can direct contact us via those platform</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container footer-bottom clearfix">
+        <div class="copyright text-center">
+            <p>&copy; Copyright <strong><span>BhuiyanTrad</span></strong>. All Rights Reserved</p>
+
+        </div>
+</footer>

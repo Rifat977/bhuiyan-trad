@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-import uuid
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 import os
 from datetime import date
 import random
@@ -25,6 +26,11 @@ def product_path(instance, filename):
     filename = "%s.%s" % (rand, ext)
     return os.path.join('product', filename)
 
+def settings_path(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s.%s" % (rand, ext)
+    return os.path.join('settings', filename)
+
 class User(AbstractUser):
     @property
     def is_admin(self):
@@ -32,16 +38,40 @@ class User(AbstractUser):
             return True
         return False
 
+class Settings(models.Model):
+    title = models.CharField(max_length=255)
+    phone = models.CharField(max_length=16)
+    email = models.EmailField(max_length=255)
+    address = models.TextField()
+    site_logo = models.ImageField(upload_to=settings_path)
+    hero_image = models.ImageField(upload_to=settings_path)
+    who_we = models.TextField()
+    who_we_image = models.ImageField(upload_to=settings_path)
+    future_focused = models.TextField()
+    future_forused_img = models.ImageField(upload_to=settings_path)
+    about_us = models.TextField()
+    about_us_img = models.ImageField(upload_to=settings_path)   
+ 
+
 class Admin(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=120, unique=True)
-    address = models.CharField(max_length=220)
-    phone = models.CharField(max_length=11)
-    image = models.ImageField(upload_to=user_path);
+    name = models.CharField(max_length=120, blank=True)
+    address = models.CharField(max_length=220, blank=True)
+    phone = models.CharField(max_length=11, blank=True)
+    image = models.ImageField(upload_to=user_path, blank=True);
     created_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+@receiver(post_save, sender=User)
+def create_user_admin(sender, instance, created, **kwargs):
+    if created:
+        Admin.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_admin(sender, instance, **kwargs):
+    instance.admin.save()
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)

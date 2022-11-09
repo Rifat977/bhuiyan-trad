@@ -26,3 +26,8 @@ class GalleryImageForm(forms.ModelForm):
     class Meta:
         model = GalleryImage
         fields = ('image',)
+    
+class SettingsForm(forms.ModelForm):
+    class Meta:
+        model = Settings
+        fields = '__all__'
