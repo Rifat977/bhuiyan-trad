@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/', views.Logout, name="logout"),
 
     path('profile/', views.Profile, name="profile"),
+    path('change-password/', views.ChangePassword, name="change-password"),
 
     path('add-category/', views.AddCategory, name="add-category"),
     path('edit-category/<int:pk>/', views.EditCategory, name="edit-category"),
@@ -24,4 +25,10 @@ urlpatterns = [
     path('products/', views.ProductsView, name="products"),
     path('edit-product/<int:pk>', views.EditProduct, name="edit-product"),
     path('delete-product/<int:pk>', views.DeleteProduct, name="delete-product"),
+
+    path('delete-gallery-image/<int:pk>/<int:red>', views.DeleteGalleryImage, name="delete-gallery-image"),
+
+    path('customers/', views.CustomerView, name="customers"),
+    path('site-settings/', views.SiteSetting, name="site-settings"),
+    
 ]

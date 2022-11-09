@@ -1,0 +1,75 @@
+{% extends '../asset/base.html' %} {% load static %} {% block content %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Site Settings</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'backend:dashboard' %}">Site Settings</a></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            {% for error in errors %}
+            <div class="alert alert-danger bg-danger text-light border-0 alert-dismissible fade show" role="alert">
+                {{error}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% for message in messages %}
+            <div class="alert alert-success bg-success text-light border-0 alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Update Settings</h5>
+
+                        <!-- Vertical Form -->
+                        <form class="row g-3" method="POST" enctype="multipart/form-data" action="{% url 'backend:add-category' %}">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Site Title</label>
+                                <input type="text" name="name" required class="form-control" value="WelcomeBhuiyan Trading Corporation" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Phone</label>
+                                <input type="number" name="name" required class="form-control" value="" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Email</label>
+                                <input type="email" name="name" required class="form-control" value="" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Address</label>
+                                <textarea name="productdesc" name="prodcutdesc" class="form-control" rows="4" placeholder="Product product"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Site Logo</label>
+                                <input type="file" name="image" required class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputEmail4" class="form-label">Hero Image</label>
+                                <input type="file" name="image" required class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-success m-1">Update</button>
+                            </div>
+                        </form>
+                        <!-- Vertical Form -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- End #main -->
+{% endblock %}

@@ -43,16 +43,16 @@
                 </li>
             </ul>
         </li>
-        {% url 'backend:dashboard' as url %}
+        {% url 'backend:customers' as url %}
         <li class="nav-item">
-            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:dashboard' %}">
+            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:customers' %}">
                 <i class="bi bi-person-lines-fill"></i>
                 <span>Customer Order</span>
             </a>
         </li>
-        {% url 'backend:dashboard' as url %}
+        {% url 'backend:site-settings' as url %}
         <li class="nav-item">
-            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:dashboard' %}">
+            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:site-settings' %}">
                 <i class="bi bi-gear-wide-connected"></i>
                 <span>Site Settings</span>
             </a>

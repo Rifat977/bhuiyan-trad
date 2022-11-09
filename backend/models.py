@@ -71,9 +71,12 @@ class Product(models.Model):
     productdesc = models.TextField(null=True, blank=True)
     subcategory = models.ForeignKey(Subcategory, on_delete=models.CASCADE)
     featureimage = models.ImageField(upload_to=product_path, null=False, blank=False)
-    galleryimage = models.ImageField(upload_to=product_path, null=False, blank=False, default="default.jpg")
 
     @property
     def slug(self):
         name = self.name
         return name.replace(' ', '-').lower()
+
+class GalleryImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to=product_path, default=None)

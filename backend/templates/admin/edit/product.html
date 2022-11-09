@@ -72,6 +72,11 @@
                                 <input type="file" name="featureimage" class="form-control" id="inputEmail4">
                             </div>
                             <div class="col-12">
+                                {% for image in galleryImages %}
+                                <img src="{{image.image.url}} " style="height: 130px; " class="img-fluid m-3 " />
+                                <a href="{% url 'backend:delete-gallery-image' image.id product.id %}" class="btn btn-danger btn-sm"> <i class="bx bxs-trash-alt"></i></a>
+                                {% endfor %}
+                                <br>
                                 <label for="inputEmail4" class="form-label">Gallery Images</label>
                                 <input type="file" name="galleryimage" class="form-control" multiple id="inputEmail4">
                             </div>

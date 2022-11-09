@@ -3,7 +3,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, is_admin
-from django.conf import settings
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from .forms import *
 
 # Create your views here.
@@ -169,11 +170,15 @@ def DeleteSubcategory(request, pk):
 def AddProduct(request):
     error = []
     if request.method == "POST":
-        name = request.POST['name']
-        # galleryImage = request.FILES.getlist('galleryimage')
+        images = request.FILES.getlist('galleryimage')
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            for img in images:
+                GalleryImage.objects.create(
+                    product = form.instance, image = img
+                ) 
+            messages.success(request, "Prodcut added successfully")
         else:
             for validation_error in form.errors.as_data():
                 error.append(validation_error + " field is required")
@@ -198,6 +203,7 @@ def ProductsView(request):
 def EditProduct(request, pk):
     entry = Product.objects.get(id=pk)
     old_img = entry.featureimage.path
+    images = request.FILES.getlist('galleryimage')
     error = []
     if request.method == "POST":
         form = ProductForm(request.POST, request.FILES, instance=entry)
@@ -206,6 +212,10 @@ def EditProduct(request, pk):
                 if(os.path.exists(old_img)):
                     os.remove(old_img)
             form.save()
+            for img in images:
+                GalleryImage.objects.create(
+                    product = form.instance, image = img
+                ) 
             messages.success(request, "Product update successfully!")
             return redirect('backend:products')
         else:
@@ -213,9 +223,11 @@ def EditProduct(request, pk):
                 error.append(validation_error + " field is required")
     product = Product.objects.get(id=pk)
     subcategory = Subcategory.objects.all()
+    galleryImages = GalleryImage.objects.filter(product=product)
     context = {
         'product' : product,
         'subcategory': subcategory,
+        'galleryImages': galleryImages,
         'errors' : error
     }
     return render(request, 'admin/edit/product.html', context)
@@ -253,3 +265,34 @@ def Profile(request):
         else:
             print(form.errors.as_data())
     return render(request, 'profile.html')
+
+@login_required
+def CustomerView(request):
+    return render(request, 'admin/customers.html')
+
+@login_required
+def SiteSetting(request):
+    return render(request, 'admin/site_setting.html')
+
+@login_required
+def ChangePassword(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, form.user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('backend:profile')
+        else:
+            for er in form.errors.as_data():
+                messages.error(request, form.errors.as_data()[er])
+    return redirect('backend:profile')
+
+@login_required
+def DeleteGalleryImage(request, pk, red):
+    entry = GalleryImage.objects.get(id=pk)
+    old_img = entry.image.path
+    if(os.path.exists(old_img)):
+        os.remove(old_img)
+    entry.delete()
+    return redirect('backend:edit-product', red)
