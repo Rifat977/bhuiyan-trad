@@ -1,47 +1,21 @@
 {% extends 'asset2/base.html' %} {% load static %} {% block content %}
-<section id="hero" class="d-flex align-items-center" style="
-    background: rgba(0,0,0, 0.5) url({{ settings.hero_image.url }}); background-position: center;
-    background-size: cover;
-    background-position: center; 
-    background-blend-mode: overlay;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100vh;
-    ">
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <h1>{{settings.title}}</h1>
-                <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#about" class="btn-get-started scrollto">Our Products</a>
-                </div>
-            </div>
-            <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
-                </div> -->
-        </div>
-    </div>
-
-</section>
-
 <main id="main">
 
     <!-- ======= Services Section ======= -->
-    <section id="category" class="services section-bg Our_products" style="height: auto">
+    <section id="category" class="services section-bg Our_products">
         <div class="container" data-aos="fade-up">
 
             <div class="section-title">
                 <h2>Our Categories</h2>
             </div>
+            <div class="row">
 
-            <div class="row our_main_category">
                 {% for item in category %}
-                <div class=" col-12 col-md-6 mb-5">
+                <div class="col col-6 col-md-3">
                     <a href="#">
                         <div class="product_category_inner d-flex  align-items-center gap-2px">
                             <div class="img">
-                                <img class="rounded-circle" src="{{item.image.url}}" width="70px" height="70px" alt="category image">
+                                <img class="rounded-circle" src="{{ item.image.url }}" width="70px" height="70px" alt="category image">
                             </div>
                             <div class="text">
                                 <h4 class="ms-4 text-black">{{item.name}}</h4>
@@ -173,58 +147,6 @@
         </div>
     </section>
     <!-- End Cliens Section -->
-
-    <!-- sponsors -->
-
-    <div class="container-fluid sponsors">
-        <div class="container p-5 " data-aos="zoom-in">
-
-            <div class="swiper_background">
-                <!-- Slider main container -->
-                <div class="swiper" style="margin-top: 150px;">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div class="swiper-slide">
-                            <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon1.png' %}" alt="icon1">
-
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon3.png' %}" alt="icon1">
-
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon2.png' %}" alt="icon1">
-
-                            </div>
-                        </div>
-                        <!-- <div class="swiper-slide">
-                    <div class="images">
-                        <img src="./assets/img/1664184845356-831270548-marine communication.jpg" alt="Automation">
-                        <p style="text-align: center; font-size:26px;font-weight:700; font-family:sans-serif;">All</p>
-                    </div>
-                </div> -->
-                    </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-
-
-
-
-                    <!-- If we need scrollbar -->
-                    <div class="swiper-scrollbar"></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">

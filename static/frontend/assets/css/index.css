@@ -40,12 +40,40 @@
     background-color: rgb(252, 252, 252);
     border-radius: 50%;
 }
-@media  screen and (max-width:500px) {
-    .myswiper img{
+.sponsors{
+    background-image: url(../img/white-bg.cfd423bd95b120c32b39.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.sponsors img{
     width: 220px;
 }
+.swiper_background{
+    border-radius: 15px;
+    background-color: white;
+    padding:10px 30px;
+}
+@media  screen and (max-width:500px) {
+    .first_heading h1{
+        font-size: 35px !important;
+        line-height: 50px !important;
+    }
+    .myswiper img{
+    width: 220px;
+
+}
+
 .myswiper p{
     font-size: 20px !important;
+}
+.whoWe{
+    display: flex;
+    justify-content: center;
+    
+}
+.whoWe img{
+    width: 360px;
 }
 .all_products{
     width: 300px;
@@ -53,7 +81,18 @@
     margin: 0 auto;
    
 }
-
+    .sponsors img{
+    width: 250px;
+}
+.product_image{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.product_image img{
+    width: 220px;
+}
 }
 .product_description img{
     border-top-left-radius: 15px;
