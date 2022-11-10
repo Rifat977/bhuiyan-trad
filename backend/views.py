@@ -280,6 +280,12 @@ def CustomerView(request):
     return render(request, 'admin/customers.html', {'customer': customer})
 
 @login_required
+def DeleteCustomer(request, id):
+    entry = Contact.objects.get(id=id)
+    entry.delete()
+    return redirect('backend:customers')
+
+@login_required
 def SiteSettings(request):
     if request.method == "POST":
         entry = Settings.objects.first()

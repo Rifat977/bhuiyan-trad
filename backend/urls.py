@@ -29,6 +29,7 @@ urlpatterns = [
     path('delete-gallery-image/<int:pk>/<int:red>', views.DeleteGalleryImage, name="delete-gallery-image"),
 
     path('customers/', views.CustomerView, name="customers"),
+    path('customers/<int:id>', views.DeleteCustomer, name="delete-customer"),
 
     path('site-settings/', views.SiteSettings, name="site-settings"),
     

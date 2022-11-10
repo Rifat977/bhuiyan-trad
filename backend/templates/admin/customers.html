@@ -37,6 +37,7 @@
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Country</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,7 +51,10 @@
                                         <th>{{item.address}}</th>
                                         <th>{{item.city}}</th>
                                         <th>{{item.country}}</th>
-                                        v </tr>
+                                        <th>
+                                            <a href="{% url 'backend:delete-customer' item.id %}" onclick="confirm('Are you sure?')" class="btn m-1 btn-sm btn-danger"> <i class="bx bxs-trash-alt"></i></a>
+                                        </th>
+                                    </tr>
                                     {% endfor %}
                                 </tbody>
                                 <tfoot>
@@ -63,6 +67,7 @@
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Country</th>
+                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>

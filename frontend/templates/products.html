@@ -1,0 +1,97 @@
+{% extends 'asset2/base.html' %} {% load static %} {% block content %}
+<main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+            <ol>
+                <li><a href="{% url 'frontend:home' %}">Home</a></li>
+                <li>Products</li>
+            </ol>
+            <h2>All Products</h2>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
+    <div class="container">
+        <div class="myswiper">
+            <h4 style="position: absolute; top:100px; right:40px; font-size: 18px; font-weight: bold;"> All Sub Categories</h4>
+            <!-- Slider main container -->
+            <div class="swiper" style="margin-top: 150px;">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    {% for item in subcategory %}
+                    <div class="swiper-slide">
+                        <a href="{% url 'frontend:subcategory-product' item.id %}">
+                            <div class="images">
+                                <img src="{{item.image.url}}" style="border-radius: 8px;" alt="Automation">
+                                <p style="text-align: center; font-size:26px;font-weight:700; font-family:sans-serif;">
+                                    {{item.name}}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+                <!-- If we need scrollbar -->
+                <div class="swiper-scrollbar"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!--==== all products section === -->
+    <div class="container py-5">
+        <div class="heading" style="display: flex; justify-content: space-between;">
+            <p style="font-size: 22px; font-weight: 800;"> All Products</p>
+
+            <div class="input_field" style="position: relative;">
+
+                <input style="position: relative; width: 270px; padding: 5px; border-radius: 15px; border: 1px solid gray;" type="text" id="search_products" placeholder="search products">
+                <i style="position: absolute; padding: 10px; left: 220px; padding: 10px; bottom: 10px;
+                    min-width: 40px;" class="fa fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row all_products">
+            {% for item in product %}
+            <div class=" col-12 col-md-6 col-lg-3">
+                <a href="{% url 'frontend:product' item.id %}">
+                    <div class="product_description">
+                        <div class="img">
+                            <img src="{{item.featureimage.url}}" width="250px" alt="pr1">
+                        </div>
+                        <div class="product_title">
+                            <h3 style="font-size: 20px; font-family: sans-serif; font-weight: 550; padding: 20px 5px; margin-bottom: 10px; " class="mb-5">
+                                {{item.name}}
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="button d-flex justify-content-center my-5">
+            <div class="btn btn-danger py-3 px-5">
+                Load More <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+{% endblock %}

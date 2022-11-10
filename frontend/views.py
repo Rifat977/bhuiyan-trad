@@ -64,3 +64,15 @@ def ContactView(request):
     else:
         messages.error(request, "Message sent failed")
     return render(request, 'contact.html', context)
+
+
+def AllProductView(request):
+    settings = Settings.objects.first()
+    product = Product.objects.all().order_by('-id')
+    subcategory = Subcategory.objects.all().order_by('name')
+    context = {
+        'settings' : settings,
+        'product' : product,
+        'subcategory': subcategory
+    }
+    return render(request, 'products.html', context)
