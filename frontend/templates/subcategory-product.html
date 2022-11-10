@@ -8,7 +8,7 @@
             <ol>
                 <li><a href="{% url 'frontend:home' %}">Home</a></li>
                 <li>Subcategory</li>
-                <li>Product</li>
+                <li>Products</li>
             </ol>
             <h2>Product of {{single_subcategory.name}}</h2>
 
@@ -21,18 +21,20 @@
         <div class="container">
             <div class="row all_products">
                 {% for item in product %}
-                <div class="col-12 col-md-4 col-lg-4">
-                    <div class="product_description">
-                        <div class="img">
-                            <img src="{{item.featureimage.url}}" width="250px" style="height: 150px;" class="img-fluid" alt="pr1">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <a href="{% url 'frontend:product' item.id %}">
+                        <div class="product_description">
+                            <div class="img">
+                                <img src="{{item.featureimage.url}}" width="250px" style="height: 150px;" class="img-fluid" alt="pr1">
+                            </div>
+                            <div class="product_title text-center">
+                                <h3 style=" font-size: 20px; font-family: sans-serif; font-weight: 550; padding: 20px 5px; margin-bottom: 10px; " class="mb-5 ">
+                                    <!-- Cobham sailor 90 satellite TV world system at sea -->
+                                    {{item.name}}
+                                </h3>
+                            </div>
                         </div>
-                        <div class="product_title">
-                            <h3 style="font-size: 20px; font-family: sans-serif; font-weight: 550; padding: 20px 5px; margin-bottom: 10px; " class="mb-5">
-                                <!-- Cobham sailor 90 satellite TV world system at sea -->
-                                {{item.name}}
-                            </h3>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
 

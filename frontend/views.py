@@ -34,3 +34,15 @@ def SubcategoryProductView(request, sub_id):
         'product' : product
     }
     return render(request, 'subcategory-product.html', context)
+
+
+def ProductView(request, pro_id):
+    settings = Settings.objects.first()
+    product = Product.objects.get(id=pro_id)
+    galleryImage = GalleryImage.objects.filter(product_id=pro_id)
+    context = {
+        'settings' : settings,
+        'product' : product,
+        'galleryImage': galleryImage
+    }
+    return render(request, 'single-product.html', context)
