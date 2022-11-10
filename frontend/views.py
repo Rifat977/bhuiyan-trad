@@ -68,15 +68,21 @@ def ContactView(request):
 
 
 def AllProductView(request):
+    pg = 20
     settings = Settings.objects.first()
-    product = Product.objects.all().order_by('-id')
+    product = Product.objects.all().order_by('-id')[:pg]
     subcategory = Subcategory.objects.all().order_by('name')
+    if 'page' in request.GET:
+        page = int(request.GET['page'])
+        pg += page
+        product = Product.objects.all().order_by('-id')[:pg]
     if 'search' in request.GET:
         search = request.GET['search']
         product = Product.objects.filter(Q(name__icontains = search))
     context = {
         'settings' : settings,
         'product' : product,
-        'subcategory': subcategory
+        'subcategory': subcategory,
+        'pg' : pg
     }
     return render(request, 'products.html', context)
