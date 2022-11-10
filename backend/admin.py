@@ -28,10 +28,14 @@ class ProductAdmin(admin.ModelAdmin):
 class SettingsAdmin(admin.ModelAdmin):
     list_display = ('title', 'phone', 'email', 'address')
 
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'product_name', 'phone', 'message')
+
 admin.site.register(Settings, SettingsAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Subcategory, SubcategoryAdmin)
 admin.site.register(Product, CategoryAdmin)
 admin.site.register(GalleryImage)
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(User, UserAdmin)
 admin.site.register(Admin, AdminAdmin)

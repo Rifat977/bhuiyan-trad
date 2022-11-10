@@ -31,3 +31,8 @@ class SettingsForm(forms.ModelForm):
     class Meta:
         model = Settings
         fields = '__all__'
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'

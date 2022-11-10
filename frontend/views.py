@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from backend.models import *
+from backend.forms import ContactForm
+from django.contrib import messages
 
 # Create your views here.
 def Home(request):
@@ -46,3 +48,19 @@ def ProductView(request, pro_id):
         'galleryImage': galleryImage
     }
     return render(request, 'single-product.html', context)
+
+def ContactView(request):
+    settings = Settings.objects.first()
+    context = {
+        'settings' : settings,
+    }
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'contact.html', context)
+        else:
+            print(form.errors.as_data())
+    else:
+        messages.error(request, "Message sent failed")
+    return render(request, 'contact.html', context)

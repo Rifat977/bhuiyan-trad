@@ -150,7 +150,7 @@
     <!-- End About Us Section -->
 
     <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clientzs section-bg blog_section">
+    <section id="blogs" class="clientzs section-bg blog_section">
         <div class="container">
             <div class="section-title">
                 <h2 class="text-white">Our Blog</h2>
@@ -232,8 +232,8 @@
             <div class="section-title">
                 <h2>Popular Products</h2>
             </div>
-            <div class="row">
-                {% for item in product %}
+            <div class="row all_products">
+                <!-- {% for item in product %}
                 <div class="col col-12 col-md-4">
                     <div class="product_image ">
                         <img src="{{item.featureimage.url}}" height="50%" alt="equepments">
@@ -241,6 +241,22 @@
                             {{item.name}}
                         </p>
                     </div>
+                </div>
+                {% endfor %} -->
+                {% for item in product %}
+                <div class="col-12 col-md-4 col-lg-3">
+                    <a href="{% url 'frontend:product' item.id %}">
+                        <div class="product_description">
+                            <div class="img">
+                                <img src="{{item.featureimage.url}}" width="250px" style="height: 150px;" class="img-fluid" alt="pr1">
+                            </div>
+                            <div class="product_title text-center">
+                                <p class="text-black text-left" style=" font-size: 22px; font-weight:500; font-family:sans-serif; ">
+                                    {{item.name}}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
