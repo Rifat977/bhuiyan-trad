@@ -2,6 +2,7 @@ from django.shortcuts import render
 from backend.models import *
 from backend.forms import ContactForm
 from django.contrib import messages
+from django.db.models import Q 
 
 # Create your views here.
 def Home(request):
@@ -70,6 +71,9 @@ def AllProductView(request):
     settings = Settings.objects.first()
     product = Product.objects.all().order_by('-id')
     subcategory = Subcategory.objects.all().order_by('name')
+    if 'search' in request.GET:
+        search = request.GET['search']
+        product = Product.objects.filter(Q(name__icontains = search))
     context = {
         'settings' : settings,
         'product' : product,
