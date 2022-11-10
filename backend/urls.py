@@ -32,5 +32,8 @@ urlpatterns = [
     path('customers/<int:id>', views.DeleteCustomer, name="delete-customer"),
 
     path('site-settings/', views.SiteSettings, name="site-settings"),
+    path('about-us/', views.AboutView, name="about"),
+    path('update-about/<int:id>', views.UpdateAbout, name="update-about"),
+    path('delete-about/<int:id>', views.DeleteAbout, name="delete-about"),
     
 ]

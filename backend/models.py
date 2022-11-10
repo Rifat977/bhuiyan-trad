@@ -120,3 +120,10 @@ class Contact(models.Model):
     address = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
     message = models.TextField()
+
+class About(models.Model):
+    image = models.ImageField(upload_to=settings_path, blank=True)
+    title = models.CharField(max_length=255, blank=True)
+    text = models.TextField(blank=True)
+
+

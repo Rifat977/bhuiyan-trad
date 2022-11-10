@@ -57,6 +57,13 @@
                 <span>Site Settings</span>
             </a>
         </li>
+        {% url 'backend:about' as url %}
+        <li class="nav-item">
+            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:about' %}">
+                <i class="ri-message-3-fill"></i>
+                <span>About Us</span>
+            </a>
+        </li>
 
     </ul>
 

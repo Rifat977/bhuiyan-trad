@@ -84,3 +84,12 @@ def AllProductView(request):
         'pg' : pg
     }
     return render(request, 'products.html', context)
+
+def AboutView(request):
+    settings = Settings.objects.first()
+    about = About.objects.all()
+    context = {
+        'settings' : settings,
+        'about' : about
+    }
+    return render(request, 'about.html', context)

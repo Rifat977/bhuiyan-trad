@@ -332,3 +332,30 @@ def DeleteGalleryImage(request, pk, red):
         os.remove(old_img)
     entry.delete()
     return redirect('backend:edit-product', red)
+
+@login_required
+def AboutView(request):
+    if request.method=="POST":
+        form = AboutForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "About us added successfully")
+    about = About.objects.all().order_by('-id')
+    return render(request, 'admin/about.html', {'about':about})
+
+@login_required
+def DeleteAbout(request, id):
+    entry = About.objects.get(id=id)
+    entry.delete()
+    return redirect('backend:about')
+
+@login_required
+def UpdateAbout(request, id):
+    about = About.objects.get(id=id)
+    if request.method=="POST":
+        form = AboutForm(request.POST, request.FILES, instance=about)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "About us update successfully")
+    about = About.objects.get(id=id)
+    return render(request, 'admin/edit/about.html', {'about':about})
