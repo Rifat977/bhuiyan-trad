@@ -62,13 +62,11 @@ def ContactView(request):
             return render(request, 'contact.html', context)
         else:
             print(form.errors.as_data())
-    else:
-        messages.error(request, "Message sent failed")
     return render(request, 'contact.html', context)
 
 
 def AllProductView(request):
-    pg = 20
+    pg = 10
     settings = Settings.objects.first()
     product = Product.objects.all().order_by('-id')[:pg]
     subcategory = Subcategory.objects.all().order_by('name')

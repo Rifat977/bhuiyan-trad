@@ -61,6 +61,15 @@
                                 <label for="inputEmail4" class="form-label">Hero Image</label>
                                 <input type="file" name="hero_image" class="form-control" id="inputEmail4">
                             </div>
+                            <div class="col-12">
+                                <label for="inputNanme4" class="form-label">Who we are</label>
+                                <textarea name="who_we" class="form-control" rows="4" placeholder="Product product">{{settings.who_we}}</textarea>
+                            </div>
+                            <div class="col-12">
+                                <img src="{{settings.who_we_image.url}}" style="height: 130px;" class="img-fluid m-3" /><br>
+                                <label for="inputEmail4" class="form-label">Who we are Image</label>
+                                <input type="file" name="who_we_image" class="form-control" id="inputEmail4">
+                            </div>
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn btn-success m-1">Update</button>
                             </div>
