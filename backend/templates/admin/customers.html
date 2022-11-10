@@ -30,24 +30,33 @@
                                 <thead>
                                     <tr>
                                         <th>Product</th>
+                                        <th>Message</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Country</th>
-                                        <th>Order Date</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for item in customer %}
                                     <tr>
-
-                                    </tr>
+                                        <th>{{item.product_name}}</th>
+                                        <th>{{item.message}}</th>
+                                        <th>{{item.name}}</th>
+                                        <th>{{item.email}}</th>
+                                        <th>{{item.phone}}</th>
+                                        <th>{{item.address}}</th>
+                                        <th>{{item.city}}</th>
+                                        <th>{{item.country}}</th>
+                                        v </tr>
+                                    {% endfor %}
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Product</th>
+                                        <th>Message</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>
@@ -55,7 +64,6 @@
                                         <th>City</th>
                                         <th>Country</th>
                                         <th>Order Date</th>
-                                        <th>Action</th>
                                     </tr>
                                 </tfoot>
                             </table>

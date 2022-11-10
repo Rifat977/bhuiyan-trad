@@ -276,7 +276,8 @@ def Profile(request):
 
 @login_required
 def CustomerView(request):
-    return render(request, 'admin/customers.html')
+    customer = Contact.objects.all().order_by('-id')
+    return render(request, 'admin/customers.html', {'customer': customer})
 
 @login_required
 def SiteSettings(request):
