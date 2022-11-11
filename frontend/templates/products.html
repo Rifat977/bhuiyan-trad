@@ -14,12 +14,29 @@
         </div>
     </section>
     <!-- End Breadcrumbs -->
+    <footer id="footer" style="background-color:#fffdfd;">
+        <div class="footer-newsletter" style="background-color:#fffdfd;">
+            <!-- <div class="container"> -->
+            <div class="row justify-content-center">
+                <div class="col-6"></div>
+                <div class="col-12 col-md-6">
+                    <h4>
+                        < All Sub Categories</h4>
+                </div>
+                <!-- <div class="col-lg-6">
+                        <form action="" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div> -->
+            </div>
+            <!-- </div> -->
+        </div>
+    </footer>
 
     <div class="container">
         <div class="myswiper">
-            <h4 style="position: absolute; top:100px; right:40px; font-size: 18px; font-weight: bold;"> All Sub Categories</h4>
             <!-- Slider main container -->
-            <div class="swiper" style="margin-top: 150px;">
+            <div class="swiper">
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Slides -->
@@ -53,23 +70,42 @@
 
 
     <!--==== all products section === -->
-    <div class="container py-5">
+    <!-- <div class="container py-5">
         <div class="heading" style="display: flex; justify-content: space-between;">
             <p style="font-size: 22px; font-weight: 800;"> All Products</p>
-            <div class="input_field" style="position: relative;">
+            <div class="input_field">
                 <form method="get" action="{% url 'frontend:products' %}">
                     <input name="search" style="position: relative; width: 270px; padding: 5px; border-radius: 15px; border: 1px solid gray;" type="text" id="search_products" placeholder="search products">
                     <i style="position: absolute; padding: 10px; left: 220px; padding: 10px; bottom: 10px;
-                        min-width: 40px;" class="fa fa-magnifying-glass"></i>
+                            min-width: 40px;" class="fa fa-magnifying-glass"></i>
                 </form>
             </div>
         </div>
-    </div>
+    </div> -->
+    <footer id="footer">
+        <div class="footer-newsletter" style="background-color:#fffdfd;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>All Products</h4>
+                    </div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-12 col-lg-6">
+                        <form method="get" action="{% url 'frontend:products' %}">
+                            <input name="search" style="position: relative; width: 100%; padding: 6px; border-radius: 15px; border: 1px solid gray;" type="text" id="search_products" placeholder="search products">
+                            <i style="position: absolute; padding: 10px; left: 220px; padding: 10px; bottom: 10px;
+                            min-width: 40px;" class="fa fa-magnifying-glass"></i>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <div class="container">
         <div class="row all_products">
             {% for item in product %}
-            <div class=" col-12 col-md-6 col-lg-3" id="#{{pg}}">
+            <div class=" col-12 col-md-6 col-lg-4" id="#{{pg}}">
                 <a href="{% url 'frontend:product' item.id %}">
                     <div class="product_description">
                         <div class="img">
