@@ -41,3 +41,8 @@ class AboutForm(forms.ModelForm):
     class Meta:
         model = About
         fields = '__all__'
+    
+class SponsorForm(forms.ModelForm):
+    class Meta:
+        model = Sponsor
+        fields = '__all__'

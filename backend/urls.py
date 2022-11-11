@@ -35,5 +35,8 @@ urlpatterns = [
     path('about-us/', views.AboutView, name="about"),
     path('update-about/<int:id>', views.UpdateAbout, name="update-about"),
     path('delete-about/<int:id>', views.DeleteAbout, name="delete-about"),
+
+    path('sponsor/', views.SponsorView, name="sponsor"),
+    path('sponsor-delete/<int:id>', views.SponsorDelete, name="delete-sponsor"),
     
 ]

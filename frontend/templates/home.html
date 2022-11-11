@@ -12,9 +12,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <h1>{{settings.title}}</h1>
+                <h1>Welcome</h1>
+                <h1>Bhuiyan Trading</h1>
+                <h1>Corporation</h1>
                 <div class="d-flex justify-content-center justify-content-lg-start">
-                    <a href="#about" class="btn-get-started scrollto">Our Products</a>
+                    <a href="#category" class="btn-get-started scrollto">Our Products</a>
                 </div>
             </div>
             <!-- <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -37,7 +39,7 @@
 
             <div class="row our_main_category">
                 {% for item in category %}
-                <div class=" col-12 col-md-6 mb-5">
+                <div class=" col-12 col-md-6 col-lg-4 mb-5">
                     <a href="{% url 'frontend:products' %}">
                         <div class="product_category_inner d-flex  align-items-center gap-2px">
                             <div class="img">
@@ -149,30 +151,6 @@
     </section>
     <!-- End About Us Section -->
 
-    <!-- ======= Clients Section ======= -->
-    <section id="blogs" class="clientzs section-bg blog_section">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="text-white">Our Blog</h2>
-            </div>
-            <div class="row" data-aos="zoom-in">
-                <div class="col col-12 col-md-6">
-                    <a href="#">
-                        <div class="blog-image">
-                            <img src="{% static 'frontend/assets/img/main.png'%}" style="position: relative; text-align: center;" class="rounded " width="100%" alt="blog-image">
-                            <p style="font-size: 20px; font-weight:700; font-family:sans-serif; color:white; position:absolute; bottom: 10px;  margin-left: 20px;" class="">Vite 3.0 vs. Create React App : <br> Comparison and migration guide
-                            </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col col-12 col-md-6">
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-    <!-- End Cliens Section -->
 
     <!-- sponsors -->
 
@@ -185,25 +163,14 @@
                     <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <!-- Slides -->
+                        {% for item in sponsor %}
                         <div class="swiper-slide">
                             <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon1.png' %}" alt="icon1">
-
-                            </div>
-
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon3.png' %}" alt="icon1">
+                                <img src="{{item.image.url}}" alt="icon1">
 
                             </div>
                         </div>
-                        <div class="swiper-slide">
-                            <div class="images">
-                                <img src="{% static 'frontend/assets/img/icon2.png' %}" alt="icon1">
-
-                            </div>
-                        </div>
+                        {% endfor %}
                         <!-- <div class="swiper-slide">
                     <div class="images">
                         <img src="./assets/img/1664184845356-831270548-marine communication.jpg" alt="Automation">

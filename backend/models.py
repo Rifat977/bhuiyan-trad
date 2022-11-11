@@ -126,4 +126,7 @@ class About(models.Model):
     title = models.CharField(max_length=255, blank=True)
     text = models.TextField(blank=True)
 
+class Sponsor(models.Model):
+    image = models.ImageField(upload_to=settings_path)
+
 

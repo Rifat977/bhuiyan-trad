@@ -1,20 +1,6 @@
 {% extends 'asset2/base.html' %} {% load static %} {% block title %} {{single_category.name}} {% endblock %} {% block content %}
 <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-        <div class="container">
-
-            <ol>
-                <li><a href="{% url 'frontend:home' %}">Home</a></li>
-                <li>Subcategory</li>
-            </ol>
-            <!-- <h2>Subcategory of {{single_category.name}}</h2> -->
-
-        </div>
-    </section>
-    <!-- End Breadcrumbs -->
-
     <section class="inner-page bg-light">
         <div class="container">
             <div class="row our_main_category">

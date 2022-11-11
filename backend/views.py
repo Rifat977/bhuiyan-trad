@@ -361,3 +361,25 @@ def UpdateAbout(request, id):
             messages.success(request, "About us update successfully")
     about = About.objects.get(id=id)
     return render(request, 'admin/edit/about.html', {'about':about})
+
+@login_required
+def SponsorView(request):
+    if request.method=="POST":
+        form = SponsorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Sponsor image insert successfully")
+        else:
+            print(form.errors.as_data())
+    sponsor = Sponsor.objects.all()
+    context = {
+        'sponsor' : sponsor
+    }
+    return render(request, 'admin/sponsor.html', context)
+
+@login_required
+def SponsorDelete(request, id):
+    entry = Sponsor.objects.get(id=id)
+    entry.delete()
+    messages.success(request, "Sponsor deleted successfully")
+    return redirect('backend:sponsor')

@@ -64,6 +64,13 @@
                 <span>About Us</span>
             </a>
         </li>
+        {% url 'backend:sponsor' as url %}
+        <li class="nav-item">
+            <a class="nav-link collapsed {% if request.path == url %}text-primary{% endif %}" href="{% url 'backend:sponsor' %}">
+                <i class="ri-message-3-fill"></i>
+                <span>Sponsor</span>
+            </a>
+        </li>
 
     </ul>
 

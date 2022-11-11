@@ -9,10 +9,12 @@ def Home(request):
     settings = Settings.objects.first()
     category = Category.objects.all().order_by('-id')
     product = Product.objects.all()
+    sponsor = Sponsor.objects.all()
     context = {
         'settings' : settings,
         'category' : category,
-        'product' : product
+        'product' : product,
+        'sponsor' : sponsor
     }
     return render(request, 'home.html', context)
 
