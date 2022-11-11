@@ -13,10 +13,12 @@ def Dashboard(request):
     category = Category.objects.all().count()
     subcategory = Subcategory.objects.all().count()
     product = Product.objects.all().count()
+    customer = Contact.objects.all().count()
     context = {
         'category' : category,
         'subcategory': subcategory,
-        'product' : product
+        'product' : product,
+        'customer' : customer
     }
     return render(request, 'admin/dashboard.html', context)
 
