@@ -42,7 +42,7 @@
                     <!-- Slides -->
                     {% for item in subcategory %}
                     <div class="swiper-slide">
-                        <a href="{% url 'frontend:subcategory-product' item.id %}">
+                        <a href="{% url 'frontend:subcategory-product' item.id item.name %}">
                             <div class="images">
                                 <img src="{{item.image.url}}" style="border-radius: 8px;" alt="Automation">
                                 <p style="text-align: center; font-size:26px;font-weight:700; font-family:sans-serif;">
@@ -109,7 +109,7 @@
                 <a href="{% url 'frontend:product' item.id %}">
                     <div class="product_description">
                         <div class="img">
-                            <img src="{{item.featureimage.url}}" width="250px" alt="pr1">
+                            <img src="{{item.featureimage.url}}" width="250px" style="height:180px;" alt="pr1">
                         </div>
                         <div class="product_title">
                             <h3 style="font-size: 20px; font-family: sans-serif; font-weight: 550; padding: 20px 5px; margin-bottom: 10px; " class="mb-5">

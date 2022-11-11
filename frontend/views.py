@@ -19,21 +19,20 @@ def Home(request):
 def SubcategoryView(request, cat_id):
     settings = Settings.objects.first()
     subcategory = Subcategory.objects.filter(category_id=cat_id)
-    single_category = Category.objects.get(id=cat_id)
+    # single_category = Category.objects.first(id=cat_id)
     context = {
         'settings' : settings,
         'subcategory' : subcategory,
-        'single_category' : single_category
+        # 'single_category' : single_category
     }
     return render(request, 'subcategory.html', context)
 
-def SubcategoryProductView(request, sub_id):
+def SubcategoryProductView(request, sub_id, subcategory_name):
     settings = Settings.objects.first()
-    single_subcategory = Subcategory.objects.get(category_id=sub_id)
     product = Product.objects.filter(subcategory=sub_id)
     context = {
         'settings' : settings,
-        'single_subcategory' : single_subcategory,
+        'single_subcategory' : subcategory_name,
         'product' : product
     }
     return render(request, 'subcategory-product.html', context)
