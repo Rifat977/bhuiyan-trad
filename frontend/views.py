@@ -8,7 +8,7 @@ from django.db.models import Q
 def Home(request):
     settings = Settings.objects.first()
     category = Category.objects.all().order_by('-id')
-    product = Product.objects.all()[:5]
+    product = Product.objects.all()[:4]
     sponsor = Sponsor.objects.all()
     context = {
         'settings' : settings,
