@@ -21,11 +21,9 @@ def Home(request):
 def SubcategoryView(request, cat_id):
     settings = Settings.objects.first()
     subcategory = Subcategory.objects.filter(category_id=cat_id)
-    # single_category = Category.objects.first(id=cat_id)
     context = {
         'settings' : settings,
         'subcategory' : subcategory,
-        # 'single_category' : single_category
     }
     return render(request, 'subcategory.html', context)
 

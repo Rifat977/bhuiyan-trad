@@ -1,12 +1,20 @@
 {% extends 'asset2/base.html' %} {% load static %} {% block title %} {{single_category.name}} {% endblock %} {% block content %}
 <main id="main">
 
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+        <div class="container">
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+
     <section class="inner-page bg-light">
         <div class="container">
             <div class="row our_main_category">
                 {% for item in subcategory %}
                 <div class=" col-6 col-md-4 mb-5">
-                    <a href="{% url 'frontend:subcategory-product' item.id %}">
+                    <a href="{% url 'frontend:subcategory-product' item.id item.name %}">
                         <div class="product_category_inner d-flex  align-items-center gap-2px">
                             <div class="img">
                                 <img class="rounded-circle" src="{{item.image.url}}" width="70px" height="70px" alt="category image">
