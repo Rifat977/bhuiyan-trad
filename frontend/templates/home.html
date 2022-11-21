@@ -1,4 +1,4 @@
-{% extends 'asset2/base.html' %} {% load static %} {% block title %} Bhuiyan Trading Corporation | Home {% endblock %} {% block content %}
+{% extends 'asset2/base.html' %} {% load static %} {% block title %} {{settings.title}}| Home {% endblock %} {% block content %}
 <section id="hero" class="d-flex align-items-center" style="
     background: rgba(0,0,0, 0.5) url({{ settings.hero_image.url }}); background-position: center;
     background-size: cover;
@@ -12,9 +12,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <h1>Welcome</h1>
-                <h1>Bhuiyan Trading</h1>
-                <h1>Corporation</h1>
+                <h1>Welcome to</h1>
+                <h1>{{settings.title}}</h1>
                 <div class="d-flex justify-content-center justify-content-lg-start">
                     <a href="#category" class="btn-get-started scrollto">Our Products</a>
                 </div>
